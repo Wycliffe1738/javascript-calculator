@@ -1,71 +1,80 @@
-// Calculator history
+// Store all calculations
 let history = [];
 
-// Addition
+
+// Add two numbers
 function add(a, b) {
-    return a + b;
+    const result = a + b;
+    addToHistory(a, b, "+", result);
+    return result;
 }
 
-// Subtraction
+
+// Subtract two numbers
 function subtract(a, b) {
-    return a - b;
+    const result = a - b;
+    addToHistory(a, b, "-", result);
+    return result;
 }
 
-// Multiplication
+
+// Multiply two numbers
 function multiply(a, b) {
-    return a * b;
+    const result = a * b;
+    addToHistory(a, b, "*", result);
+    return result;
 }
 
-// Division
+
+// Divide two numbers
 function divide(a, b) {
     if (b === 0) {
-        return "Error: Cannot divide by zero";
+        console.log("Error: Cannot divide by zero.");
+        return null;
     }
 
-    return a / b;
+    const result = a / b;
+    addToHistory(a, b, "/", result);
+    return result;
 }
 
-// Save a calculation to history
-function saveCalculation(a, operator, b, result) {
-    const calculation = `${a} ${operator} ${b} = ${result}`;
+
+// Add a calculation to the history
+function addToHistory(operand1, operand2, operator, result) {
+    const calculation = {
+        operand1: operand1,
+        operand2: operand2,
+        operator: operator,
+        result: result
+    };
+
     history.push(calculation);
 }
 
+
 // Display calculation history
-function showHistory() {
+function displayHistory() {
     if (history.length === 0) {
-        console.log("No calculations in history.");
+        console.log("You have no stored calculations.");
         return;
     }
 
     console.log("\nCalculation History:");
 
     history.forEach((calculation, index) => {
-        console.log(`${index + 1}. ${calculation}`);
+        console.log(
+            `${index + 1}. ${calculation.operand1} ${calculation.operator} ${calculation.operand2} = ${calculation.result}`
+        );
     });
 }
 
 
-// Test the calculator
+// Test the operations
+console.log("Addition:", add(10, 5));
+console.log("Subtraction:", subtract(10, 5));
+console.log("Multiplication:", multiply(10, 5));
+console.log("Division:", divide(10, 5));
 
-let number1 = 10;
-let number2 = 5;
-
-let result1 = add(number1, number2);
-console.log(`${number1} + ${number2} = ${result1}`);
-saveCalculation(number1, "+", number2, result1);
-
-let result2 = subtract(number1, number2);
-console.log(`${number1} - ${number2} = ${result2}`);
-saveCalculation(number1, "-", number2, result2);
-
-let result3 = multiply(number1, number2);
-console.log(`${number1} * ${number2} = ${result3}`);
-saveCalculation(number1, "*", number2, result3);
-
-let result4 = divide(number1, number2);
-console.log(`${number1} / ${number2} = ${result4}`);
-saveCalculation(number1, "/", number2, result4);
 
 // Display history
-showHistory();
+displayHistory();
