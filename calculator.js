@@ -75,10 +75,10 @@ function displayHistory() {
 
 // Test the calculator
 
-console.log("Addition:", add(10, 5));
-console.log("Subtraction:", subtract(10, 5));
-console.log("Multiplication:", multiply(10, 5));
-console.log("Division:", divide(10, 5));
+console.log("Addition:", add(0, 5));
+console.log("Subtraction:", subtract(0, 5));
+console.log("Multiplication:", multiply(0, 5));
+console.log("Division:", divide(0, 5));
 
 
 // Display the calculation history
